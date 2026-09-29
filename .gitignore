@@ -1,0 +1,70 @@
+# ------------------------------------------------------------
+# TAKT — Unreal Engine 5 (C++ + Blueprints) · Meta Quest 2
+# Patrones sin "/" inicial: valen tanto si el .uproject está
+# en la raíz del repo como en una subcarpeta.
+# ------------------------------------------------------------
+
+# --- Carpetas que genera el motor (se regeneran solas) ---
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/*
+!Build/*/
+Build/*/**
+!Build/*/PakBlacklist*.txt
+!Build/**/*.ico
+
+# --- Datos de iluminación precalculada (se reconstruyen) ---
+*_BuiltData.uasset
+
+# --- Ficheros de proyecto del IDE (se regeneran con "Generate Project Files") ---
+.vs/
+.idea/
+.vscode/
+*.sln
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.xcodeproj
+*.xcworkspace
+
+# --- Compilados C++ ---
+# (ojo: NO se ignora *.obj porque también es un formato de malla 3D;
+#  los .obj del compilador ya caen dentro de Intermediate/)
+*.slo
+*.lo
+*.o
+*.gch
+*.pch
+*.dll
+*.lib
+*.exp
+*.pdb
+*.so
+*.a
+*.exe
+
+# --- Builds de Android / Quest ---
+*.apk
+*.aab
+*.obb
+Packaged/
+
+# --- Secretos: el repo es PÚBLICO ---
+# Keystore de firma de Android. Ojo: Unreal guarda la contraseña del
+# keystore en Config/DefaultEngine.ini
+# ([/Script/AndroidRuntimeSettings.AndroidRuntimeSettings] KeyStorePassword);
+# para builds de desarrollo en las Quest no hace falta rellenarla.
+*.keystore
+*.jks
+.env
+*.pem
+*.key
+
+# --- Sistema ---
+Thumbs.db
+desktop.ini
+.DS_Store
