@@ -1,6 +1,6 @@
 # 0004 — Unreal Engine 5.7 del Epic Launcher con el Meta XR Plugin
 
-- **Estado:** Propuesta (confirmar al instalar)
+- **Estado:** Sustituida por [0005](0005-unreal-5-8-meta-xr-v207.md) (2026-10-01)
 - **Fecha:** 2026-09-29
 
 ## Contexto
