@@ -1,6 +1,9 @@
 # Normalización de finales de línea para texto
 * text=auto
 
+# Los hooks son scripts de sh: siempre con LF, también en Windows
+.githooks/* text eol=lf
+
 # --- Assets binarios de Unreal: a Git LFS y bloqueables ---
 *.uasset filter=lfs diff=lfs merge=lfs -text lockable
 *.umap   filter=lfs diff=lfs merge=lfs -text lockable

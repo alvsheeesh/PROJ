@@ -1,0 +1,36 @@
+#!/bin/sh
+# Comprueba el formato del mensaje de commit (ADR 0009, CONTRIBUTING.md).
+# Activar una vez por clon:  git config core.hooksPath .githooks
+
+msg_file="$1"
+
+# Los merge commits no llevan horas ni impacto.
+if git rev-parse -q --verify MERGE_HEAD >/dev/null 2>&1; then
+  exit 0
+fi
+
+# Mensaje sin las líneas de comentario de Git.
+msg=$(grep -v '^#' "$msg_file" | tr -d '\r')
+errors=""
+
+first_line=$(printf '%s\n' "$msg" | sed -n '/[^[:space:]]/{p;q;}')
+if ! printf '%s\n' "$first_line" | grep -Eq '^TAKT-[0-9]+ '; then
+  errors="$errors
+  - El resumen tiene que empezar por la clave de Jira: \"TAKT-NN Verbo...\""
+fi
+
+if ! printf '%s\n' "$msg" | grep -Eq '^Horas: [0-9]+(\.[0-9])?h$'; then
+  errors="$errors
+  - Falta la línea \"Horas: X.Xh\" (punto decimal, una décima como máximo; p. ej. Horas: 0.5h)"
+fi
+
+if ! printf '%s\n' "$msg" | grep -Eq '^Impacto: (Sugerencia|Menor|Medio|Mayor|Crítico|Critico)$'; then
+  errors="$errors
+  - Falta la línea \"Impacto: ...\" o el nivel no es Sugerencia, Menor, Medio, Mayor o Crítico"
+fi
+
+if [ -n "$errors" ]; then
+  echo "Commit rechazado (ver CONTRIBUTING.md):$errors" >&2
+  exit 1
+fi
+exit 0

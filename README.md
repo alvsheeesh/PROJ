@@ -6,8 +6,8 @@ Proyecto final (PROJ) de 2º de DAM — Álvaro, curso 2026-2027.
 
 ## Stack
 
-- **Motor:** Unreal Engine 5.8 (C++ + Blueprints) con el Meta XR Plugin v207
-- **Plataforma:** Meta Quest 2 en modo autónomo (Android)
+- **Motor:** Unreal Engine 5.8 (C++ + Blueprints) con OpenXR; el Meta XR Plugin v207 llega después del prototipo
+- **Plataforma:** Meta Quest 2. El prototipo va por Quest Link ([ADR 0010](docs/decisiones/0010-prototipo-por-quest-link.md)); el objetivo final es el modo autónomo (Android)
 - **Gestión:** Jira (Scrum) — _enlace pendiente_
 - **Control de versiones:** Git + Git LFS en GitHub
 
@@ -30,6 +30,7 @@ Requisitos: Unreal Engine 5.8 con soporte para Android, Visual Studio 2026 con l
 ```bash
 git lfs install          # una sola vez por máquina
 git clone <url-del-repo>
+git config core.hooksPath .githooks   # una vez por clon: comprueba el formato de los commits
 ```
 
 Después: clic derecho sobre `TAKT/TAKT.uproject` → *Generate Visual Studio project files* y abrir el proyecto.
@@ -60,12 +61,13 @@ Horas: 0.5h
 Impacto: Medio
 ```
 
-Escala de impacto provisional: **Bajo**, **Medio** o **Alto** (pendiente de confirmar con el profesor).
+Impacto en cinco niveles: **Sugerencia**, **Menor**, **Medio**, **Mayor** y **Crítico**. Definiciones, reglas de las horas y ciclo completo de una tarea en [`CONTRIBUTING.md`](CONTRIBUTING.md) ([ADR 0009](docs/decisiones/0009-flujo-de-git.md)).
 
 ## Planificación y avances
 
 - **Prototipo:** entrega el 19 de noviembre de 2026 ([alcance](docs/decisiones/0006-alcance-del-prototipo.md) · [calendario](docs/planificacion.md)).
 - **Bitácora:** [`docs/sprints/`](docs/sprints/).
+- **Ritmo:** mínimo de 9 horas a la semana en tres sesiones, con push al final de cada una ([ADR 0011](docs/decisiones/0011-ritmo-de-trabajo.md)).
 
 ## Decisiones
 

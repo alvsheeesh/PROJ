@@ -36,11 +36,26 @@ Control intermedio: **8 de octubre**. Si no hay build vacía en el visor, se apl
 - Android deja de bloquear: el proyecto se crea con la plantilla *Virtual Reality* (OpenXR) y se prueba por Quest Link, con el juego ejecutándose en el PC. El SDK de Android solo hace falta para empaquetar el APK (TAKT-20).
 - Pendiente de confirmar con el profesor si el prototipo se enseña por Link o en las Quest en modo autónomo. Según la respuesta, se revisan las ADR 0005, 0006 y 0008.
 - Primer intento de proyecto creado como Blueprint y fuera de `TAKT/`; se rehace como proyecto C++ en `E:\PROJ\TAKT`.
+- [ADR 0009](../decisiones/0009-flujo-de-git.md): flujo de Git. PR con merge commit (sin *squash*), escala de impacto de cinco niveles (Sugerencia, Menor, Medio, Mayor, Crítico) y hook `commit-msg` que comprueba el formato. Normas en [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
 
 ## Revisión
 
-_Pendiente (al cerrar el sprint)._
+**Objetivo no cumplido.** No hay proyecto de Unreal en el repositorio ni build en las Quest 2.
+
+Entregado:
+- Entorno instalado: UE 5.8.3, Visual Studio 2026, JDK 21 y SDK de Android, con las versiones y los pasos en [`entorno.md`](../entorno.md).
+- Decisiones de motor, alcance, documentación, toolchain y flujo de Git (ADR 0005 a 0009), con el hook `commit-msg` y [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
+- Calendario hasta el prototipo.
+
+No entregado, y por qué:
+- **Proyecto TAKT y objeto que se coge con los mandos:** no se llegó a crear el proyecto. La toolchain de Android se trató como requisito previo cuando solo hace falta para el APK, y solo hubo dos días de trabajo en el sprint.
+- **Build autónoma en las Quest 2:** depende del proyecto. Pasa a después del prototipo ([ADR 0010](../decisiones/0010-prototipo-por-quest-link.md)).
+
+Todo lo pendiente pasa a la primera semana del [sprint 02](sprint-02.md).
 
 ## Retrospectiva
 
-_Pendiente (al cerrar el sprint)._
+- **Mantener:** documentar cada decisión con sus alternativas, e instalar todo en E: con las versiones exactas anotadas.
+- **Cambiar:** trabajar en días fijos y subir al final de cada sesión ([ADR 0011](../decisiones/0011-ritmo-de-trabajo.md)). Fueron dos días de trabajo y un solo commit de trabajo en dos semanas.
+- **Cambiar:** atacar primero lo que se puede enseñar (proyecto y juego por Link) y dejar para después lo que no bloquea, como el empaquetado.
+- **Cambiar:** no dejar trabajo sin subir de una semana a otra. Los cambios del 8 de octubre siguieron sin commit hasta el sprint siguiente.
