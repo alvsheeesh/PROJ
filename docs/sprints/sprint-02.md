@@ -6,6 +6,8 @@
 
 ## Planificación
 
+Tareas en Jira: TAKT-17 (proyecto con LFS), TAKT-21 (coger un cubo con el mando) y TAKT-22 (GitHub for Jira) en la primera semana; TAKT-24 (cinta) y TAKT-25 (estado de la máquina) en la segunda.
+
 Incluye lo que no se hizo en el sprint 01 (crear el proyecto y cogerlo por Link). Primer sprint con el ritmo de la [ADR 0011](../decisiones/0011-ritmo-de-trabajo.md): lunes, miércoles y viernes por la mañana, mínimo 9 horas a la semana.
 
 | Semana | Sesiones | Objetivo |
@@ -23,6 +25,11 @@ Riesgos:
 ### 2026-10-15 (jueves)
 - Replanificación tras el cierre del sprint 01. [ADR 0010](../decisiones/0010-prototipo-por-quest-link.md): el prototipo va por Quest Link con OpenXR, y el Meta XR Plugin y el APK pasan a después. [ADR 0011](../decisiones/0011-ritmo-de-trabajo.md): mínimo de 9 horas a la semana en tres sesiones fijas, con push al final de cada una.
 - Planificación semana a semana, con un recorte previsto para cada semana, en [`planificacion.md`](../planificacion.md).
+
+### 2026-10-15 (jueves, tarde)
+- Jira al día: sprint 01 cerrado (TAKT-12, 13, 14, 16 y 23 finalizadas; TAKT-15, 18, 19 y 20 al backlog por la ADR 0010) y sprint 02 empezado.
+- TAKT-17: proyecto creado con la plantilla *Virtual Reality* de UE 5.8 en `TAKT/` (estructura de la [ADR 0002](../decisiones/0002-github-con-git-lfs.md)). En 5.8 esta plantilla es solo Blueprint y el asistente no deja elegir C++: el proyecto pasa a C++ al añadir la primera clase, que será la de la cinta (TAKT-24), en lugar de crear ahora una clase vacía.
+- Primer commit del proyecto: 189 assets de la plantilla por LFS (unos 55 MB), configuración y `.uproject`. `Intermediate/`, `Saved/` y `DerivedDataCache/` quedan fuera por el `.gitignore`.
 
 ## Revisión
 
