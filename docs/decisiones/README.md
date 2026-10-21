@@ -15,6 +15,7 @@ Cada decisión relevante de arquitectura o de proceso se documenta en un fichero
 | [0009](0009-flujo-de-git.md) | Flujo de Git: ramas, pull requests y formato de los commits | Aceptada | 2026-10-08 |
 | [0010](0010-prototipo-por-quest-link.md) | Prototipo por Quest Link con OpenXR | Aceptada | 2026-10-15 |
 | [0011](0011-ritmo-de-trabajo.md) | Ritmo de trabajo: mínimo semanal y push por sesión | Aceptada | 2026-10-15 |
+| [0012](0012-cinta-por-fisica.md) | Cinta transportadora por física | Aceptada | 2026-10-21 |
 
 ## Plantilla
 
