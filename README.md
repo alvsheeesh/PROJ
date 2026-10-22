@@ -67,7 +67,7 @@ Impacto en cinco niveles: **Sugerencia**, **Menor**, **Medio**, **Mayor** y **Cr
 
 - **Prototipo:** entrega el 19 de noviembre de 2026 ([alcance](docs/decisiones/0006-alcance-del-prototipo.md) · [calendario](docs/planificacion.md)).
 - **Bitácora:** [`docs/sprints/`](docs/sprints/).
-- **Ritmo:** mínimo de 9 horas a la semana en tres sesiones, con push al final de cada una ([ADR 0011](docs/decisiones/0011-ritmo-de-trabajo.md)).
+- **Ritmo:** miércoles por la mañana fijo y una segunda sesión elegida cada semana, con un mínimo de 6 horas a la semana y push al final de cada sesión ([ADR 0013](docs/decisiones/0013-ritmo-miercoles-y-sesion-elegida.md)).
 
 ## Decisiones
 

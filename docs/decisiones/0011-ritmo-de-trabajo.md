@@ -1,6 +1,6 @@
 # 0011 — Ritmo de trabajo: mínimo semanal y push por sesión
 
-- **Estado:** Aceptada
+- **Estado:** Sustituida por [0013](0013-ritmo-miercoles-y-sesion-elegida.md)
 - **Fecha:** 2026-10-15
 
 ## Contexto

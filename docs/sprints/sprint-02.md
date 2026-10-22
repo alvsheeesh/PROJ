@@ -8,12 +8,12 @@
 
 Tareas en Jira: TAKT-17 (proyecto con LFS), TAKT-21 (coger un cubo con el mando) y TAKT-22 (GitHub for Jira) en la primera semana; TAKT-24 (cinta) y TAKT-25 (estado de la máquina) en la segunda.
 
-Incluye lo que no se hizo en el sprint 01 (crear el proyecto y cogerlo por Link). Primer sprint con el ritmo de la [ADR 0011](../decisiones/0011-ritmo-de-trabajo.md): lunes, miércoles y viernes por la mañana, mínimo 9 horas a la semana.
+Incluye lo que no se hizo en el sprint 01 (crear el proyecto y cogerlo por Link). Primer sprint con el ritmo de la [ADR 0011](../decisiones/0011-ritmo-de-trabajo.md): lunes, miércoles y viernes por la mañana, mínimo 9 horas a la semana. Desde el 22 de octubre rige la [ADR 0013](../decisiones/0013-ritmo-miercoles-y-sesion-elegida.md): miércoles fijo y una segunda sesión elegida cada semana, mínimo 6 horas.
 
 | Semana | Sesiones | Objetivo |
 |--------|----------|----------|
 | 15–21 oct | vie 16, lun 19, mié 21 | Pendientes del 8 de octubre subidos. Proyecto C++ `TAKT/` en el repositorio con LFS. Funciona por Link y se coge un objeto con los mandos. |
-| 22–28 oct | vie 23, lun 26, mié 28 | Cinta en C++ y estado de la máquina (marcha/parada). Cierre y release `sprint-02`. |
+| 22–28 oct | vie 23, mié 28 | Cinta en C++ (adelantada al 21 oct), rendimiento por Link (TAKT-26) y estado de la máquina (marcha/parada). Cierre y release `sprint-02`. |
 
 Riesgos:
 - Primer proyecto C++ de Unreal: compilación con VS 2026 y la MSVC 14.51 ([`entorno.md`](../entorno.md)).
@@ -50,6 +50,10 @@ Riesgos:
 - **Horas:** 4.9 h: 3.2 h el 15 oct (0.7 h según `git log` más 2.5 h de `5a66f58` y `9396963`, que no cuentan porque los trailers llevan sangrado) y 1.7 h el 21 oct. Por debajo del mínimo de 9 h.
 - **Recorte:** la semana 1 no tiene recorte previsto porque es la base de todo lo demás ([planificación](../planificacion.md)). Lo que falte se recupera el jueves 22 o el fin de semana.
 - **Semana 2:** la cinta se ha adelantado a hoy, así que las sesiones del 23, 26 y 28 quedan para el rendimiento por Link (TAKT-26, que entra en el sprint; ahora es lo más urgente: por debajo de 72 fps la prueba en VR marea y no es fiable), TAKT-25 (estado de la máquina) y el cierre del sprint.
+
+### 2026-10-22 (jueves)
+- Cambio de ritmo ([ADR 0013](../decisiones/0013-ritmo-miercoles-y-sesion-elegida.md), TAKT-27): los tres días fijos de la ADR 0011 no se pueden mantener por los deberes. A partir de ahora, el miércoles por la mañana es fijo (4 h o más) y la segunda sesión se elige en el control de cada miércoles, con un mínimo de 6 h a la semana. Los recortes previstos se aplican ya en la [planificación](../planificacion.md).
+- Segunda sesión de esta semana: **viernes 23**. Empieza por TAKT-26 (rendimiento por Link).
 
 ## Revisión
 
