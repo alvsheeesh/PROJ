@@ -14,7 +14,10 @@ Cada decisión relevante de arquitectura o de proceso se documenta en un fichero
 | [0008](0008-toolchain-android-sin-android-studio.md) | Toolchain de Android con las command-line tools, sin Android Studio | Aplazada por 0010 | 2026-10-01 |
 | [0009](0009-flujo-de-git.md) | Flujo de Git: ramas, pull requests y formato de los commits | Aceptada | 2026-10-08 |
 | [0010](0010-prototipo-por-quest-link.md) | Prototipo por Quest Link con OpenXR | Aceptada | 2026-10-15 |
-| [0011](0011-ritmo-de-trabajo.md) | Ritmo de trabajo: mínimo semanal y push por sesión | Aceptada | 2026-10-15 |
+| [0011](0011-ritmo-de-trabajo.md) | Ritmo de trabajo: mínimo semanal y push por sesión | Sustituida por 0013 | 2026-10-15 |
+| [0012](0012-cinta-por-fisica.md) | Cinta transportadora por física | Aceptada | 2026-10-21 |
+| [0013](0013-ritmo-miercoles-y-sesion-elegida.md) | Ritmo de trabajo: miércoles fijo y una segunda sesión elegida cada semana | Aceptada | 2026-10-22 |
+| [0014](0014-estado-de-la-linea.md) | Estado de la línea: actor de control con modelo mixto | Aceptada | 2026-10-22 |
 
 ## Plantilla
 
