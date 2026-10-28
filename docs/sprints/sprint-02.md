@@ -70,10 +70,33 @@ Riesgos:
   - Los botones del panel de detalles (`CallInEditor`) no salen con la pestaña *General*: hay que elegir *Todos* o buscar por nombre. Con *Simulate*, la plantilla VR cambia de punto de vista.
   - Se probó a enlazar las teclas 1-4 al control, pero las pulsaciones no llegaban a la partida, así que se descartó. Para probar sin gafas basta con `ke`.
 
+### Control de la semana 2 (22–28 oct)
+- **Objetivo:** cinta en C++ ✅ (adelantada al 21 oct). Estado de la máquina ✅ (TAKT-25: hecho el 22, probado y subido el 28; completo, sin recurrir al botón de depuración del recorte). Rendimiento por Link (TAKT-26) ❌: no se empezó. Cierre del sprint ✅.
+- **Sesiones:** el 22 por la mañana (TAKT-27, no prevista), el 22 por la tarde (TAKT-25) y el 28. La del viernes 23 no se hizo ni se recuperó.
+- **Horas:** 6.0 h: 0.5 h y 2.0 h el 22, y 3.5 h el 28. Mínimo de 6 h cumplido.
+- **Recorte:** TAKT-26 no tenía recorte previsto. Pasa a ser lo primero de la semana 3, y eso hace más probable el recorte de esa semana (la pila no se repone).
+- **Semana 3:** segunda sesión el **jueves 29 por la mañana**, para TAKT-26, más el miércoles 4.
+
 ## Revisión
 
-_Pendiente (al cerrar el sprint)._
+**Objetivo cumplido.** TAKT corre por Quest Link desde el repositorio, se coge un objeto con los mandos y una cinta en C++ transporta objetos, con un estado de la máquina (en marcha, parada y averiada) que la para y la arranca.
+
+Entregado:
+- Proyecto `TAKT/` en C++ a partir de la plantilla VR de UE 5.8, con LFS (TAKT-17), y GitHub for Jira (TAKT-22).
+- Coger un cubo con el mando por Link (TAKT-21).
+- Cinta por física, `AConveyorBelt` ([ADR 0012](../decisiones/0012-cinta-por-fisica.md), TAKT-24).
+- Control de línea, `ALineController`, con tres estados y el evento `OnStateChanged` ([ADR 0014](../decisiones/0014-estado-de-la-linea.md), TAKT-25). La avería ya existe como estado, aunque de momento se provoca a mano.
+- Nuevo ritmo de trabajo ([ADR 0013](../decisiones/0013-ritmo-miercoles-y-sesion-elegida.md), TAKT-27).
+
+No entregado, y por qué:
+- **Rendimiento por Link (TAKT-26):** entró en el sprint el 21 oct, al medir 25-36 fps, y no se llegó a empezar por la sesión perdida del 23. Pasa al sprint 03 como primera tarea.
+
+Horas del sprint: 4.9 h la semana 1 y 6.0 h la semana 2 (10.9 h en total).
 
 ## Retrospectiva
 
-_Pendiente (al cerrar el sprint)._
+- **Mantener:** escribir la ADR antes del código (0012 y 0014), con las alternativas descartadas, y probar cada pieza antes de darla por hecha.
+- **Cambiar:** otra vez ha quedado trabajo sin subir de un día para otro: lo del 22 por la tarde no se subió hasta el 28. Ya salió en la retrospectiva del sprint 01. Cada sesión acaba con commit y push aunque la prueba esté pendiente; si es así, se anota en la bitácora.
+- **Cambiar:** la sesión perdida del viernes 23 no se recuperó antes del miércoles, como pide la ADR 0013.
+- **Cambiar:** `740616c` se subió directamente a `develop`, sin PR. Desde los rulesets del 22 oct ya no se puede.
+- **Cambiar:** decidir cómo se prueba sin gafas al diseñar, en la ADR, y no en el momento de probar. El 28 se perdió tiempo buscando los botones del panel de detalles.
