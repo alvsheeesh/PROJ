@@ -55,6 +55,21 @@ Riesgos:
 - Cambio de ritmo ([ADR 0013](../decisiones/0013-ritmo-miercoles-y-sesion-elegida.md), TAKT-27): los tres días fijos de la ADR 0011 no se pueden mantener por los deberes. A partir de ahora, el miércoles por la mañana es fijo (4 h o más) y la segunda sesión se elige en el control de cada miércoles, con un mínimo de 6 h a la semana. Los recortes previstos se aplican ya en la [planificación](../planificacion.md).
 - Segunda sesión de esta semana: **viernes 23**. Empieza por TAKT-26 (rendimiento por Link).
 
+### 2026-10-22 (jueves, tarde)
+- TAKT-25: decidido quién es el dueño del estado de la línea ([ADR 0014](../decisiones/0014-estado-de-la-linea.md)): un actor `ALineController` («Control de línea») con tres estados (parada, en marcha y averiada) que manda directamente a sus cintas con `SetRunning` y avisa a todo lo demás con el evento `OnStateChanged`. Descartados un subsistema del mundo, un componente por máquina, el GameMode, todo por eventos, todo por referencias directas y StateTree.
+- Implementado en `TAKT/Source/TAKT/Line/LineController.*` y compilado. Ese día no se probó ni se hizo commit: se sube el 28 con la prueba.
+- El control se colocó por error en el mapa de la plantilla (`L_XRTemplate`), que no tiene cinta. Esos cambios se descartan el 28.
+
+### 2026-10-23 (viernes)
+- Sesión no hecha. No se ha recuperado antes del miércoles, como pide la ADR 0013.
+
+### 2026-10-28 (miércoles)
+- El commit `740616c` (TAKT-27, 22 oct) se subió directamente a `develop`, sin rama ni PR. No se reescribe la historia. Los rulesets de `main` y `develop` (sin borrado, sin force push y con PR obligatoria) están configurados desde el 22 oct.
+- TAKT-25 probado en `L_Dev_Cinta`: control colocado en el nivel con la cinta asignada en `Belts`. Durante la partida en el editor, transiciones lanzadas con el comando de consola `ke * <función>`, que llama a una función por su nombre: Stop, Start, TriggerFault, Start, Repair y Start. Las seis dan el resultado esperado: la cinta para y arranca los cubos, y el Start con la línea averiada se rechaza («no se puede pasar a En marcha desde Averiada»). Cada cambio de estado sale también en pantalla (solo en desarrollo).
+- Problemas encontrados:
+  - Los botones del panel de detalles (`CallInEditor`) no salen con la pestaña *General*: hay que elegir *Todos* o buscar por nombre. Con *Simulate*, la plantilla VR cambia de punto de vista.
+  - Se probó a enlazar las teclas 1-4 al control, pero las pulsaciones no llegaban a la partida, así que se descartó. Para probar sin gafas basta con `ke`.
+
 ## Revisión
 
 _Pendiente (al cerrar el sprint)._
