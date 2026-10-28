@@ -17,6 +17,7 @@ Cada decisión relevante de arquitectura o de proceso se documenta en un fichero
 | [0011](0011-ritmo-de-trabajo.md) | Ritmo de trabajo: mínimo semanal y push por sesión | Sustituida por 0013 | 2026-10-15 |
 | [0012](0012-cinta-por-fisica.md) | Cinta transportadora por física | Aceptada | 2026-10-21 |
 | [0013](0013-ritmo-miercoles-y-sesion-elegida.md) | Ritmo de trabajo: miércoles fijo y una segunda sesión elegida cada semana | Aceptada | 2026-10-22 |
+| [0014](0014-estado-de-la-linea.md) | Estado de la línea: actor de control con modelo mixto | Aceptada | 2026-10-22 |
 
 ## Plantilla
 
