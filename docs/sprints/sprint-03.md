@@ -6,7 +6,7 @@
 
 ## Planificación
 
-Tareas en Jira: TAKT-26 (rendimiento por Link, viene del sprint 02). Las de la pila, la interacción genérica (agarrar y soltar) y la avería se crean al empezar cada semana.
+Tareas en Jira: TAKT-26 (rendimiento por Link, viene del sprint 02), TAKT-29 (interacción genérica: coger y soltar) y TAKT-30 (colocar en la cinta desde la pila). Las de la avería se crean al empezar la semana 4.
 
 | Semana | Sesiones | Objetivo |
 |--------|----------|----------|
@@ -25,6 +25,7 @@ Riesgos:
 - Decidido en la [ADR 0015](../decisiones/0015-rendimiento-por-link.md): luz direccional movible con 2 cascadas y 15 m de sombra, y fuera ray tracing, Lumen, sombras virtuales y campos de distancia. Substrate se queda.
 - Resultado en el editor, con la misma medición: **GPU de 3,2 a 1,9 ms (−40 %)**; las sombras pasan de 1,4 a 0,2 ms y la memoria de vídeo de 1,05 a 0,8 GB. Desaparece el aviso de iluminación sin construir. Al reiniciar, el editor recompiló los shaders.
 - Falta la medida que cuenta: *VR Preview* por Link con `stat unit`, objetivo 72 fps. Si no llega, el siguiente paso es la resolución de render.
+- TAKT-29: decidido el diseño de la interacción propia ([ADR 0016](../decisiones/0016-interaccion-generica.md)): `UGrabbableComponent` en los objetos y `UHandComponent` en cada mano, en C++; el objeto se ancla a la mano y al soltarlo recupera la física con la velocidad de la mano; la entrada se queda en Blueprint. Se implementa el 4 de noviembre. Creada también TAKT-30 (colocar en la cinta desde la pila).
 
 ## Revisión
 
