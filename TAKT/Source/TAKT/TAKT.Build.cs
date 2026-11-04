@@ -18,5 +18,8 @@ public class TAKT : ModuleRules
 			"Engine",
 			"PhysicsCore"
 		});
+
+		// Enhanced Input: la mano se engancha a la Input Action del grip (ADR 0016).
+		PrivateDependencyModuleNames.Add("EnhancedInput");
 	}
 }
