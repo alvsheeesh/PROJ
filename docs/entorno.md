@@ -70,6 +70,17 @@ if ($p -notlike "*$sdk\platform-tools*") {
 
 `JAVA_HOME` no se modifica: en este PC apunta a un JDK 25 que se usa en otras asignaturas.
 
+## Compilar el código C++
+
+- **Cambios solo en `.cpp`:** con el editor abierto, Live Coding (Ctrl+Alt+F11).
+- **Clases nuevas, cambios en cabeceras (`UPROPERTY`, `UFUNCTION`) o en `TAKT.Build.cs`:** con el editor cerrado, desde `cmd`:
+
+```bat
+"E:\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat" TAKTEditor Win64 Development -Project="E:\PROJ\TAKT\TAKT.uproject" -WaitMutex > E:\PROJ\TAKT\Saved\Logs\build.txt 2>&1
+```
+
+  El resultado queda en `TAKT/Saved/Logs/build.txt` (fuera del repositorio). Al abrir el `.uproject`, el editor no recompila solo si el módulo ya existe, aunque el código haya cambiado.
+
 ## Meta Quest 2
 
 - Cuenta de desarrollador de Meta con una organización, y el modo desarrollador activado desde la app Meta Horizon del móvil.

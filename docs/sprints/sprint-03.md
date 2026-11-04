@@ -31,6 +31,20 @@ Riesgos:
 - TAKT-26 medido por Link (*VR Preview* en `L_Dev_Cinta`, `stat unit`, resolución 2080×2096): **GPU 9,5 ms**, por debajo de los 13,9 ms que permite ir a 72 Hz. Fotograma 14,7 ms (unos 68 fps), frente a los 25-36 fps del 21 de octubre.
 - El tiempo de juego (14,5 ms) es casi el del fotograma completo: con OpenXR el hilo de juego espera la sincronización del visor, y en *VR Preview* también carga con el editor. Fuera del editor se espera que llegue a 72; se comprueba con la build de la semana 5. No hace falta bajar la resolución.
 
+- TAKT-29 implementado según la [ADR 0016](../decisiones/0016-interaccion-generica.md): `UGrabbableComponent` («Cogible») y `UHandComponent` («Mano») en `TAKT/Source/TAKT/Interaction/`, con `EnhancedInput` como dependencia del módulo. Antes de fusionarla, la ADR se ajustó en la entrada: cada mano recibe sus *Input Actions* como propiedades y se engancha a ellas sola, en lugar de conectarlas en el gráfico del pawn.
+- En `BP_XRPawn`, una *Mano* en cada controlador de agarre con `IA_Grab_*_Pressed` para coger e `IA_Grab_*_Released` para soltar. En `BP_Grabbable_SmallCube`, *Cogible* en lugar del `GrabComponent` de la plantilla.
+- Al añadir clases nuevas, el editor no recompila el módulo solo y Live Coding no sirve: se compila con `Build.bat` (comando en [`entorno.md`](../entorno.md)) con el editor cerrado. Las dos compilaciones, sin avisos.
+- Probado por Link: se coge, se suelta y se lanza con las dos manos, también un cubo en cada mano a la vez (velocidades al soltar de hasta 7 m/s). Soltar con el grip ya funciona bien, que era el problema del agarre de la plantilla.
+- Problemas encontrados:
+  - Con una sola acción (`IA_Grab_*_Pressed`) el cubo se soltaba en el fotograma siguiente: con el *trigger* *Pressed* la acción empieza y termina en el mismo gesto. Se separó en dos acciones (coger y soltar), que es como las trae la plantilla.
+  - **El alcance es demasiado grande:** se cogen cubos que en la realidad no estarían al alcance. *Grab Radius* es de 15 cm medidos desde el punto de agarre del mando. Se ajustará en el pawn (6-8 cm) en la próxima prueba con gafas, sin tocar código.
+
+### Control de la semana 3 (29 oct–4 nov)
+- **Objetivo:** rendimiento por Link ✅ (TAKT-26: unos 68 fps con la GPU a 9,5 ms). Interacción genérica (agarrar y soltar) separada de la entrada ✅ (TAKT-29). Pila que se repone y colocar en la cinta desde la pila ❌ (TAKT-30): se aplica el recorte previsto, objetos colocados a mano en el nivel, y pasa a la semana 4.
+- **Sesiones:** 2 de 2: el jueves 29 por la tarde, sin gafas (la de la mañana no se hizo y se recuperó por la tarde), y el miércoles 4 por la tarde, con gafas.
+- **Horas:** 3,6 h: 1,1 h el 29 y 2,5 h el 4. **Por debajo del mínimo de 6 h.**
+- **Semana 4:** segunda sesión el **jueves 5 por la tarde, sin gafas**: código de la avería (atasco), de la palanca (`accionar`) y de la luz, probado con `ke`. El miércoles 11, con gafas: prueba por Link, TAKT-30 con el recorte, ajuste del alcance y cierre del sprint 03.
+
 ## Revisión
 
 _Al cerrar el sprint._
