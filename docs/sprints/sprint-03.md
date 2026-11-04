@@ -27,6 +27,10 @@ Riesgos:
 - Falta la medida que cuenta: *VR Preview* por Link con `stat unit`, objetivo 72 fps. Si no llega, el siguiente paso es la resolución de render.
 - TAKT-29: decidido el diseño de la interacción propia ([ADR 0016](../decisiones/0016-interaccion-generica.md)): `UGrabbableComponent` en los objetos y `UHandComponent` en cada mano, en C++; el objeto se ancla a la mano y al soltarlo recupera la física con la velocidad de la mano; la entrada se queda en Blueprint. Se implementa el 4 de noviembre. Creada también TAKT-30 (colocar en la cinta desde la pila).
 
+### 2026-11-04 (miércoles)
+- TAKT-26 medido por Link (*VR Preview* en `L_Dev_Cinta`, `stat unit`, resolución 2080×2096): **GPU 9,5 ms**, por debajo de los 13,9 ms que permite ir a 72 Hz. Fotograma 14,7 ms (unos 68 fps), frente a los 25-36 fps del 21 de octubre.
+- El tiempo de juego (14,5 ms) es casi el del fotograma completo: con OpenXR el hilo de juego espera la sincronización del visor, y en *VR Preview* también carga con el editor. Fuera del editor se espera que llegue a 72; se comprueba con la build de la semana 5. No hace falta bajar la resolución.
+
 ## Revisión
 
 _Al cerrar el sprint._
