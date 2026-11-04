@@ -26,6 +26,10 @@ Riesgos:
 - Resultado en el editor, con la misma medición: **GPU de 3,2 a 1,9 ms (−40 %)**; las sombras pasan de 1,4 a 0,2 ms y la memoria de vídeo de 1,05 a 0,8 GB. Desaparece el aviso de iluminación sin construir. Al reiniciar, el editor recompiló los shaders.
 - Falta la medida que cuenta: *VR Preview* por Link con `stat unit`, objetivo 72 fps. Si no llega, el siguiente paso es la resolución de render.
 
+### 2026-11-04 (miércoles)
+- TAKT-26 medido por Link (*VR Preview* en `L_Dev_Cinta`, `stat unit`, resolución 2080×2096): **GPU 9,5 ms**, por debajo de los 13,9 ms que permite ir a 72 Hz. Fotograma 14,7 ms (unos 68 fps), frente a los 25-36 fps del 21 de octubre.
+- El tiempo de juego (14,5 ms) es casi el del fotograma completo: con OpenXR el hilo de juego espera la sincronización del visor, y en *VR Preview* también carga con el editor. Fuera del editor se espera que llegue a 72; se comprueba con la build de la semana 5. No hace falta bajar la resolución.
+
 ## Revisión
 
 _Al cerrar el sprint._
