@@ -6,7 +6,7 @@
 
 ## Planificación
 
-Tareas en Jira: TAKT-26 (rendimiento por Link, viene del sprint 02), TAKT-29 (interacción genérica: coger y soltar) y TAKT-30 (colocar en la cinta desde la pila). Las de la avería se crean al empezar la semana 4.
+Tareas en Jira: TAKT-26 (rendimiento por Link, viene del sprint 02), TAKT-29 (interacción genérica: coger y soltar) y TAKT-30 (colocar en la cinta desde la pila). Las de la avería se crearon el 5 de noviembre: TAKT-31 (atasco), TAKT-32 (palanca) y TAKT-33 (luz de estado).
 
 | Semana | Sesiones | Objetivo |
 |--------|----------|----------|
@@ -44,6 +44,17 @@ Riesgos:
 - **Sesiones:** 2 de 2: el jueves 29 por la tarde, sin gafas (la de la mañana no se hizo y se recuperó por la tarde), y el miércoles 4 por la tarde, con gafas.
 - **Horas:** 3,6 h: 1,1 h el 29 y 2,5 h el 4. **Por debajo del mínimo de 6 h.**
 - **Semana 4:** segunda sesión el **jueves 5 por la tarde, sin gafas**: código de la avería (atasco), de la palanca (`accionar`) y de la luz, probado con `ke`. El miércoles 11, con gafas: prueba por Link, TAKT-30 con el recorte, ajuste del alcance y cierre del sprint 03.
+
+### 2026-11-05 (jueves)
+- Sesión en clase, sin gafas. Decidido el diseño de la avería en la [ADR 0017](../decisiones/0017-averia-palanca-y-luz.md) y creadas TAKT-31 (atasco), TAKT-32 (palanca) y TAKT-33 (luz).
+- TAKT-31: componente «Averías aleatorias» (`URandomFaultComponent`) en el control de línea. Cada vez que la línea arranca programa el atasco entre *Min Delay* y *Max Delay* segundos y lo cancela si la línea se para antes.
+- TAKT-32: evento genérico `accionar` con el componente «Accionable» (`UActuatableComponent`, `OnActuated`) y la «Palanca» (`ALever`), que repara la línea averiada y la vuelve a arrancar. La mano acciona con el mismo grip si el accionable está más cerca que cualquier cogible. Se llama *Actuate* porque `UActorComponent` ya tiene `Activate`.
+- TAKT-33: «Luz de estado» (`AStatusLight`): bola y luz puntual sin sombras, verde en marcha, ámbar parada y roja averiada, escuchando `OnStateChanged`.
+- Compilado con `Build.bat`, sin avisos. Montado en `L_Dev_Cinta` con *Min/Max Delay* de 5 y 10 s para probar.
+- Probado en el *Play* normal: la línea se atasca sola, la cinta se para y la luz se pone roja; `ke * Actuate` repara y vuelve a arrancar (Averiada → Parada → En marcha) y la luz vuelve a verde. Si la línea se para antes del atasco, no salta. Accionar la palanca cuando no hay avería solo mueve el mango.
+- Problemas encontrados:
+  - No se distingue si la bola de la luz cambia de color: se ve oscura y lo que cambia claramente es la luz que da alrededor. Se mira con las gafas el miércoles; si no cambia, la bola necesita un material emisivo.
+- Queda para el miércoles 11, con gafas: accionar la palanca con el grip por Link, devolver *Min/Max Delay* a valores de juego y TAKT-30.
 
 ## Revisión
 

@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "GameFramework/Pawn.h"
 #include "InputAction.h"
+#include "Interaction/ActuatableComponent.h"
 #include "Interaction/GrabbableComponent.h"
 
 namespace
@@ -105,7 +106,18 @@ bool UHandComponent::Grab()
 		return true;
 	}
 
-	UGrabbableComponent* Nearest = FindNearestGrabbable();
+	float GrabbableDistance = 0.f;
+	float ActuatableDistance = 0.f;
+	UGrabbableComponent* Nearest = Cast<UGrabbableComponent>(FindNearest(UGrabbableComponent::StaticClass(), GrabbableDistance));
+	UActuatableComponent* NearestActuatable = Cast<UActuatableComponent>(FindNearest(UActuatableComponent::StaticClass(), ActuatableDistance));
+
+	// Mismo gesto para coger y para accionar: gana lo que esté más cerca (ADR 0017).
+	if (NearestActuatable && (!Nearest || ActuatableDistance < GrabbableDistance))
+	{
+		NearestActuatable->Actuate(this);
+		return false;
+	}
+
 	if (!Nearest)
 	{
 		UE_LOG(LogTAKT, Verbose, TEXT("%s: nada que coger a %.0f cm."), *GetName(), GrabRadius);
@@ -141,8 +153,9 @@ void UHandComponent::NotifyTakenByOtherHand(const UGrabbableComponent* Grabbable
 	}
 }
 
-UGrabbableComponent* UHandComponent::FindNearestGrabbable() const
+UActorComponent* UHandComponent::FindNearest(TSubclassOf<UActorComponent> ComponentClass, float& OutDistance) const
 {
+	OutDistance = TNumericLimits<float>::Max();
 	const UWorld* World = GetWorld();
 	if (!World)
 	{
@@ -157,8 +170,7 @@ UGrabbableComponent* UHandComponent::FindNearestGrabbable() const
 		FCollisionObjectQueryParams(FCollisionObjectQueryParams::AllDynamicObjects),
 		FCollisionShape::MakeSphere(GrabRadius), Params);
 
-	UGrabbableComponent* Nearest = nullptr;
-	float NearestDistance = TNumericLimits<float>::Max();
+	UActorComponent* Nearest = nullptr;
 	for (const FOverlapResult& Overlap : Overlaps)
 	{
 		const AActor* Actor = Overlap.GetActor();
@@ -168,8 +180,8 @@ UGrabbableComponent* UHandComponent::FindNearestGrabbable() const
 			continue;
 		}
 
-		UGrabbableComponent* Grabbable = Actor->FindComponentByClass<UGrabbableComponent>();
-		if (!Grabbable)
+		UActorComponent* Found = Actor->FindComponentByClass(ComponentClass);
+		if (!Found)
 		{
 			continue;
 		}
@@ -182,10 +194,10 @@ UGrabbableComponent* UHandComponent::FindNearestGrabbable() const
 			Distance = FVector::Dist(HandLocation, Primitive->GetComponentLocation());
 		}
 
-		if (Distance < NearestDistance)
+		if (Distance < OutDistance)
 		{
-			NearestDistance = Distance;
-			Nearest = Grabbable;
+			OutDistance = Distance;
+			Nearest = Found;
 		}
 	}
 	return Nearest;
