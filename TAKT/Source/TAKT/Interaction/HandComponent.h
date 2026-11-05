@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "Templates/SubclassOf.h"
 #include "HandComponent.generated.h"
 
 class UGrabbableComponent;
@@ -12,7 +13,8 @@ class UInputAction;
  *
  * Va como hija del controlador de movimiento de cada mano en el pawn, así que se mueve con
  * el mando. Grab() coge el cogible más cercano dentro de GrabRadius y Release() lo suelta con
- * la velocidad de la mano, para poder lanzarlo.
+ * la velocidad de la mano, para poder lanzarlo. Si lo más cercano es un accionable (una
+ * palanca), Grab() lo acciona en lugar de coger nada (ADR 0017).
  *
  * La entrada se elige con datos (Enhanced Input): GrabAction coge y ReleaseAction suelta, cada
  * una al dispararse (la plantilla VR las trae separadas: IA_Grab_*_Pressed e IA_Grab_*_Released).
@@ -28,7 +30,10 @@ class TAKT_API UHandComponent : public USceneComponent
 public:
 	UHandComponent();
 
-	/** Coge el cogible más cercano. Devuelve false si no hay ninguno al alcance. */
+	/**
+	 * Coge el cogible más cercano o, si hay un accionable más cerca, lo acciona.
+	 * Devuelve true solo si ha cogido algo.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "TAKT|Interacción")
 	bool Grab();
 
@@ -70,7 +75,8 @@ private:
 	void HandleGrabInput();
 	void HandleReleaseInput();
 
-	UGrabbableComponent* FindNearestGrabbable() const;
+	/** Componente de la clase indicada más cercano a la mano dentro de GrabRadius, y su distancia. */
+	UActorComponent* FindNearest(TSubclassOf<UActorComponent> ComponentClass, float& OutDistance) const;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UGrabbableComponent> Held;
