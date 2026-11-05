@@ -54,6 +54,9 @@ Riesgos:
 - Probado en el *Play* normal: la línea se atasca sola, la cinta se para y la luz se pone roja; `ke * Actuate` repara y vuelve a arrancar (Averiada → Parada → En marcha) y la luz vuelve a verde. Si la línea se para antes del atasco, no salta. Accionar la palanca cuando no hay avería solo mueve el mango.
 - Problemas encontrados:
   - No se distingue si la bola de la luz cambia de color: se ve oscura y lo que cambia claramente es la luz que da alrededor. Se mira con las gafas el miércoles; si no cambia, la bola necesita un material emisivo.
+- Comprobado después con el *Play* y F8 (cámara libre): **la bola de la luz sí cambia de color**. No hace falta material emisivo.
+- TAKT-34: el `.uproject` declaraba las 12 plataformas de destino de la plantilla (PS4, PS5, Switch, Xbox, Mac, iOS, VisionOS…). Se dejan solo Windows (prototipo por Link) y Android (APK de después, [ADR 0010](../decisiones/0010-prototipo-por-quest-link.md)).
+- Horas: la sesión fue de 16:30 a 17:50 (1,3 h). Los tres commits de la avería se subieron a las 17:24 con 1,3 h, que incluían por adelantado el tiempo de TAKT-34; por eso su commit lleva 0 h.
 - Queda para el miércoles 11, con gafas: accionar la palanca con el grip por Link, devolver *Min/Max Delay* a valores de juego y TAKT-30.
 
 ## Revisión
