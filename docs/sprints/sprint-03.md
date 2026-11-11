@@ -6,7 +6,7 @@
 
 ## Planificación
 
-Tareas en Jira: TAKT-26 (rendimiento por Link, viene del sprint 02), TAKT-29 (interacción genérica: coger y soltar) y TAKT-30 (colocar en la cinta desde la pila). Las de la avería se crearon el 5 de noviembre: TAKT-31 (atasco), TAKT-32 (palanca) y TAKT-33 (luz de estado).
+Tareas en Jira: TAKT-26 (rendimiento por Link, viene del sprint 02), TAKT-29 (interacción genérica: coger y soltar) y TAKT-30 (colocar en la cinta desde la pila). Las de la avería se crearon el 5 de noviembre: TAKT-31 (atasco), TAKT-32 (palanca) y TAKT-33 (luz de estado). Añadidas después: TAKT-34 (plataformas) y TAKT-35 (cierre del sprint).
 
 | Semana | Sesiones | Objetivo |
 |--------|----------|----------|
@@ -59,10 +59,47 @@ Riesgos:
 - Horas: la sesión fue de 16:30 a 17:50 (1,3 h). Los tres commits de la avería se subieron a las 17:24 con 1,3 h, que incluían por adelantado el tiempo de TAKT-34; por eso su commit lleva 0 h.
 - Queda para el miércoles 11, con gafas: accionar la palanca con el grip por Link, devolver *Min/Max Delay* a valores de juego y TAKT-30.
 
+### 2026-11-11 (miércoles)
+- Sesión en casa, con gafas (11:30–12:45).
+- *Grab Radius* de las dos manos de `BP_XRPawn` bajado de 15 a 7 cm: ya no se cogen cubos que no estarían al alcance.
+- TAKT-30 con el recorte previsto: ocho cubos colocados a mano en la mesa, junto a la cinta, en lugar de una pila que se repone.
+- Probado por Link (*VR Preview* en `L_Dev_Cinta`), todo correcto:
+  - Se coge un cubo de la mesa, se deja en la cinta en marcha y la cinta lo transporta, también con varios cubos.
+  - Se pasa un cubo de una mano a la otra.
+  - El atasco aparece solo, la cinta se para y la luz se pone roja.
+  - La palanca se acciona con el grip: repara, la línea vuelve a arrancar y la luz se pone verde.
+  - Con un cubo cerca de la palanca, el grip actúa sobre lo que está más cerca.
+- Problema encontrado: moviendo el *Player Start* no había ninguna posición desde la que se llegara a todo (cubos y palanca). Se deja al jugador fijo delante de la cinta y se colocan alrededor, al alcance del brazo, la mesa con los cubos, la palanca y la luz.
+- «Averías aleatorias» devuelto a valores de juego: *Min Delay* 20 s y *Max Delay* 45 s.
+
+### Control de la semana 4 (5–11 nov)
+- **Objetivo:** avería (atasco) que para la máquina y se repara con una palanca ✅ (TAKT-31 y TAKT-32, [ADR 0017](../decisiones/0017-averia-palanca-y-luz.md)). Indicador con una luz de color ✅ (TAKT-33). Colocar en la cinta (TAKT-30, viene de la semana 3) ✅ con el recorte: cubos colocados a mano. Cierre del sprint 03 ✅. Además, TAKT-34 (plataformas del proyecto).
+- **Sesiones:** 2 de 2: el jueves 5 por la tarde, en clase y sin gafas, y el miércoles 11, con gafas.
+- **Horas:** 2,5 h: 1,3 h el 5 y 1,2 h el 11. **Por debajo del mínimo de 6 h por segunda semana seguida.**
+- **Recorte:** no hace falta ninguno nuevo; el de la pila ya estaba previsto.
+- **Semana 5:** segunda sesión el **jueves 12, en clase y sin gafas**, para la primera build de prueba, más el miércoles 18 (build de entrega y release `prototipo`). A partir del jueves 12, sin funcionalidades nuevas.
+
 ## Revisión
 
-_Al cerrar el sprint._
+**Objetivo cumplido, con el recorte de la pila.** TAKT va por Link a unos 68 fps, se coge un objeto y se deja en la cinta en marcha, y una avería funciona de principio a fin: aparece sola, para la máquina, se repara con una palanca y la máquina vuelve a arrancar, con una luz que indica el estado.
+
+Entregado:
+- Rendimiento por Link: de 25-36 a unos 68 fps, con la GPU a 9,5 ms ([ADR 0015](../decisiones/0015-rendimiento-por-link.md), TAKT-26).
+- Interacción genérica en C++: coger y soltar con las manos, separada de la entrada ([ADR 0016](../decisiones/0016-interaccion-generica.md), TAKT-29).
+- Avería de principio a fin: atasco aleatorio, palanca con el evento `accionar` y luz de estado ([ADR 0017](../decisiones/0017-averia-palanca-y-luz.md), TAKT-31, TAKT-32 y TAKT-33).
+- Colocar cubos en la cinta en marcha (TAKT-30), con el alcance de las manos ajustado a 7 cm.
+- Plataformas del proyecto reducidas a Windows y Android (TAKT-34).
+
+No entregado, y por qué:
+- **Pila que se repone:** recorte previsto desde la semana 3; los cubos se colocan a mano en el nivel.
+- **72 fps por Link:** en *VR Preview* se queda en unos 68 porque el hilo de juego carga con el editor. Se comprueba con la build de la semana 5.
+
+Horas del sprint: 3,6 h la semana 3 y 2,5 h la semana 4 (6,1 h en total).
 
 ## Retrospectiva
 
-_Al cerrar el sprint._
+- **Mantener:** decidir en la ADR cómo se prueba sin gafas. La avería se probó entera en clase el 5 con `ke`, y con gafas solo quedó comprobar el grip.
+- **Mantener:** probar cada pieza antes de darla por hecha y anotar en la bitácora lo que falla (doble acción del grip, alcance de las manos, colocación del jugador).
+- **Cambiar:** las horas. Dos semanas seguidas por debajo del mínimo (3,6 h y 2,5 h) y la sesión del martes 10 se abrió pero no se trabajó. La segunda sesión de cada semana se fija con día y hora en el control del miércoles y se trata como una clase.
+- **Cambiar:** las horas de los commits se confirman antes de escribir los mensajes, no se reparten por adelantado. El 5 se dieron antes de acabar la sesión y hubo que compensarlo con TAKT-34 a 0 h.
+- **Cambiar:** en VR, montar la escena alrededor del jugador desde el principio en lugar de mover el *Player Start* hasta llegar a todo.
