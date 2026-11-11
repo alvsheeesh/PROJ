@@ -18,6 +18,9 @@ Cada decisión relevante de arquitectura o de proceso se documenta en un fichero
 | [0012](0012-cinta-por-fisica.md) | Cinta transportadora por física | Aceptada | 2026-10-21 |
 | [0013](0013-ritmo-miercoles-y-sesion-elegida.md) | Ritmo de trabajo: miércoles fijo y una segunda sesión elegida cada semana | Aceptada | 2026-10-22 |
 | [0014](0014-estado-de-la-linea.md) | Estado de la línea: actor de control con modelo mixto | Aceptada | 2026-10-22 |
+| [0015](0015-rendimiento-por-link.md) | Rendimiento por Link: luz movible con sombras en cascada y sin funciones que no se usan | Aceptada | 2026-10-29 |
+| [0016](0016-interaccion-generica.md) | Interacción genérica: componentes en C++ para coger y soltar | Aceptada | 2026-10-29 |
+| [0017](0017-averia-palanca-y-luz.md) | Avería de principio a fin: atasco aleatorio, palanca accionable y luz de estado | Aceptada | 2026-11-05 |
 
 ## Plantilla
 
