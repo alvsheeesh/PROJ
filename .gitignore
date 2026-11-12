@@ -9,11 +9,12 @@ Binaries/
 Intermediate/
 Saved/
 DerivedDataCache/
-Build/*
-!Build/*/
-Build/*/**
-!Build/*/PakBlacklist*.txt
-!Build/**/*.ico
+# Build/ con «/» en medio solo valdría en la raíz: «**/» lo extiende a TAKT/Build/
+**/Build/*
+!**/Build/*/
+**/Build/*/**
+!**/Build/*/PakBlacklist*.txt
+!**/Build/**/*.ico
 
 # --- Datos de iluminación precalculada (se reconstruyen) ---
 *_BuiltData.uasset
