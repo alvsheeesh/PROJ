@@ -6,7 +6,8 @@ Un fichero por sprint ([ADR 0007](../decisiones/0007-bitacora-por-sprint.md)). C
 |--------|--------|----------|--------|
 | [01](sprint-01.md) | 1–14 oct 2026 | Pipeline Quest 2 | Cerrado (objetivo no cumplido) |
 | [02](sprint-02.md) | 15–28 oct 2026 | Proyecto y línea | Cerrado (objetivo cumplido) |
-| [03](sprint-03.md) | 29 oct–11 nov 2026 | Avería | En curso |
+| [03](sprint-03.md) | 29 oct–11 nov 2026 | Avería | Cerrado (objetivo cumplido con el recorte de la pila) |
+| [04](sprint-04.md) | 12–18 nov 2026 | Estabilización | En curso |
 
 ## Plantilla
 
