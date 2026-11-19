@@ -34,3 +34,14 @@ Riesgos:
   - La build crea `TAKT/Build/Windows/`, que salía como fichero nuevo en Git: las reglas de `Build/` del `.gitignore` llevaban una barra en medio y solo valían en la raíz del repositorio. Pasan a ser `**/Build/...`.
   - La escena se ve muy oscura, salvo lo que ilumina la luz de estado. No es cosa de la build: ya se veía así en el *Play* del editor el 5 de noviembre. Se revisa con gafas el 18.
 - Queda para el miércoles 18, con gafas: probar la build por Link, medir con `stat unit` si llega a 72 fps ([ADR 0015](../decisiones/0015-rendimiento-por-link.md)) y mirar la iluminación de la escena.
+- Después de subir TAKT-36: demostración al tutor en clase (la avería en el editor y la build). Su valoración: la base está bien, pero falta un **bucle de juego**, algo que dé ganas de seguir jugando. Se diseña un bucle mínimo para responder a lo que pide (bandeja infinita, parejas que puntúan al llegar juntas a una caja al final de la cinta, marcador y partida contrarreloj) y se crean TAKT-37 a TAKT-41. Sesión hasta las 18:10: 0,6 h que no entraron en los commits del día y se suman al de la [ADR 0018](../decisiones/0018-bucle-de-juego.md).
+
+### 2026-11-15 a 2026-11-18
+- No se hicieron las sesiones previstas (domingo 15, lunes 16 y miércoles 18). La entrega del prototipo se aplaza al jueves 26 de noviembre a las 15:00, con presentación en clase. El sprint 04 se alarga hasta el 25 de noviembre.
+
+### 2026-11-19 (jueves)
+- Sesión en clase, sin gafas, desde las 17:23.
+- [ADR 0018](../decisiones/0018-bucle-de-juego.md): bucle de juego mínimo, que amplía el alcance de la [ADR 0006](../decisiones/0006-alcance-del-prototipo.md). La congelación pasa al final de la sesión con gafas del fin de semana.
+- Código en `Source/TAKT/Game/`: «Dispensador» (`AProductDispenser`, TAKT-37), «Caja de salida» (`AOutputBin`, TAKT-38) y «Marcador» (`AScoreBoard`, TAKT-39). Compilado con `Build.bat` sin errores ni avisos. Todavía sin colocar en `L_Dev_Cinta` ni probar.
+- Problema encontrado: al pasar a `develop` con los cambios, GitHub Desktop chocó con dos niveles (`L_Dev_Cinta` y `L_XRTemplate_Lighting`) guardados el 12 de noviembre después del último commit. Se dejan como estaban en `develop`; esos guardados se conservan en un *stash* de GitHub Desktop por si hiciera falta recuperarlos.
+- Queda para el fin de semana, con gafas: colocar los dispensadores, la caja y el marcador en `L_Dev_Cinta`, probar el bucle y la partida contrarreloj (TAKT-40).

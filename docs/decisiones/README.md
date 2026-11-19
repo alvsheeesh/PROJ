@@ -21,6 +21,7 @@ Cada decisión relevante de arquitectura o de proceso se documenta en un fichero
 | [0015](0015-rendimiento-por-link.md) | Rendimiento por Link: luz movible con sombras en cascada y sin funciones que no se usan | Aceptada | 2026-10-29 |
 | [0016](0016-interaccion-generica.md) | Interacción genérica: componentes en C++ para coger y soltar | Aceptada | 2026-10-29 |
 | [0017](0017-averia-palanca-y-luz.md) | Avería de principio a fin: atasco aleatorio, palanca accionable y luz de estado | Aceptada | 2026-11-05 |
+| [0018](0018-bucle-de-juego.md) | Bucle de juego mínimo para el prototipo | Aceptada | 2026-11-19 |
 
 ## Plantilla
 
