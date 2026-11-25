@@ -46,13 +46,26 @@ void AProductDispenser::BeginPlay()
 		return;
 	}
 	SpawnProduct();
+
+	// Si el producto se cae de la bandeja sin que nadie lo coja, se da por perdido y se repone.
+	FTimerHandle LostCheckTimer;
+	GetWorld()->GetTimerManager().SetTimer(LostCheckTimer, FTimerDelegate::CreateWeakLambda(this, [this]()
+	{
+		constexpr float MaxDistanceFromTray = 25.f;
+		if (CurrentProduct && FVector::Dist(CurrentProduct->GetActorLocation(), SpawnPoint->GetComponentLocation()) > MaxDistanceFromTray)
+		{
+			UE_LOG(LogTAKT, Log, TEXT("%s: %s se ha caído de la bandeja; se repone."), *GetName(), *CurrentProduct->GetName());
+			ReleaseCurrent();
+			ScheduleRefill();
+		}
+	}), 0.25f, true);
 }
 
 void AProductDispenser::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	if (const UWorld* World = GetWorld())
 	{
-		World->GetTimerManager().ClearTimer(RefillTimer);
+		World->GetTimerManager().ClearAllTimersForObject(this);
 	}
 	Super::EndPlay(EndPlayReason);
 }
