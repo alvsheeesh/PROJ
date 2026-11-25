@@ -34,3 +34,36 @@ Riesgos:
   - La build crea `TAKT/Build/Windows/`, que salía como fichero nuevo en Git: las reglas de `Build/` del `.gitignore` llevaban una barra en medio y solo valían en la raíz del repositorio. Pasan a ser `**/Build/...`.
   - La escena se ve muy oscura, salvo lo que ilumina la luz de estado. No es cosa de la build: ya se veía así en el *Play* del editor el 5 de noviembre. Se revisa con gafas el 18.
 - Queda para el miércoles 18, con gafas: probar la build por Link, medir con `stat unit` si llega a 72 fps ([ADR 0015](../decisiones/0015-rendimiento-por-link.md)) y mirar la iluminación de la escena.
+- Después de subir TAKT-36: demostración al tutor en clase (la avería en el editor y la build). Su valoración: la base está bien, pero falta un **bucle de juego**, algo que dé ganas de seguir jugando. Se diseña un bucle mínimo para responder a lo que pide (bandeja infinita, parejas que puntúan al llegar juntas a una caja al final de la cinta, marcador y partida contrarreloj) y se crean TAKT-37 a TAKT-41. Sesión hasta las 18:10: 0,6 h que no entraron en los commits del día y se suman al de la [ADR 0018](../decisiones/0018-bucle-de-juego.md).
+
+### 2026-11-15 a 2026-11-18
+- No se hicieron las sesiones previstas (domingo 15, lunes 16 y miércoles 18). La entrega del prototipo se aplaza al jueves 26 de noviembre a las 15:00, con presentación en clase. El sprint 04 se alarga hasta el 25 de noviembre.
+
+### 2026-11-19 (jueves)
+- Sesión en clase, sin gafas, desde las 17:23.
+- [ADR 0018](../decisiones/0018-bucle-de-juego.md): bucle de juego mínimo, que amplía el alcance de la [ADR 0006](../decisiones/0006-alcance-del-prototipo.md). La congelación pasa al final de la sesión con gafas del fin de semana.
+- Código en `Source/TAKT/Game/`: «Dispensador» (`AProductDispenser`, TAKT-37), «Caja de salida» (`AOutputBin`, TAKT-38) y «Marcador» (`AScoreBoard`, TAKT-39). Compilado con `Build.bat` sin errores ni avisos. Todavía sin colocar en `L_Dev_Cinta` ni probar.
+- Problema encontrado: al pasar a `develop` con los cambios, GitHub Desktop chocó con dos niveles (`L_Dev_Cinta` y `L_XRTemplate_Lighting`) guardados el 12 de noviembre después del último commit. Se dejan como estaban en `develop`; esos guardados se conservan en un *stash* de GitHub Desktop por si hiciera falta recuperarlos.
+- Queda para el fin de semana, con gafas: colocar los dispensadores, la caja y el marcador en `L_Dev_Cinta`, probar el bucle y la partida contrarreloj (TAKT-40).
+
+### 2026-11-22 (domingo)
+- Sesión en casa, con gafas, desde las 19:19, en dos partes: se cortó por un problema con el cargador del portátil y se retomó a las 20:55.
+- Montaje del bucle en `L_Dev_Cinta`. Referencia: la cinta tiene el centro de la superficie en (−30, −100, 60) y avanza hacia +X; el jugador está al otro lado de la palanca. Dos «Dispensador», uno para cada mano, a la altura de la cinta y a 10 cm de su borde: (−75, −50, 60) y (−5, −50, 60). «Caja de salida» en (92, −100, 30), justo donde acaba la cinta y con el borde 5 cm por debajo. «Marcador» encima y detrás de la cinta, en (−30, −130, 115), con la caja asignada.
+- Prueba por Link: **la caja cuenta bien**. Dos productos que llegan juntos cuentan como pareja y uno solo como suelto (en la segunda prueba, 3 parejas y 4 sueltos en el log). Los dispensadores reponen al coger el producto.
+- Problemas encontrados:
+  - El dispensador derecho dejaba de reponer. Solo reponía al coger o destruir su producto, así que si el producto se caía de la bandeja sin cogerlo se quedaba esperando. Arreglo: cada 0,25 s comprueba si el producto está a más de 25 cm de la bandeja y, si lo está, lo da por perdido y repone. Compilado con `Build.bat` sin errores ni avisos y probado por Link: al echar el cubo de la bandeja con otro cubo, sale uno nuevo.
+  - En esa prueba, el log muestra que los productos de la bandeja derecha se caen uno tras otro (uno cada 1-2 s) mientras se sostiene otro cubo encima para echarlos, y algunos acaban en la cinta y llegan a la caja como sueltos. Causa: un cubo cogido deja de tener física pero sigue chocando con los demás, así que empuja al producto nuevo, que aparece en la bandeja 0,5 s después de coger el anterior, con la mano todavía encima. Seguramente es también lo que dejó parado al dispensador derecho en la primera prueba. Alrededor de la bandeja no hay nada más que pueda empujarlos.
+  - El marcador no se ve con las gafas. En la primera prueba no tenía la caja asignada (aviso en el log); en la segunda ya no sale el aviso, pero sigue sin verse.
+  - La escena sigue viéndose muy oscura con las gafas.
+- TAKT-40 (partida contrarreloj con récord) se recorta del prototipo, como ya preveía la [ADR 0018](../decisiones/0018-bucle-de-juego.md): vuelve al backlog. No queda tiempo antes de la entrega.
+- Queda para el lunes 23 y el miércoles 25: la bandeja derecha, el marcador, la iluminación, la PR del bucle y la build de entrega con la release `prototipo`.
+
+### 2026-11-25 (miércoles)
+- Sesión en casa, con gafas, en dos tramos: desde las 12:30 y desde las 18:00.
+- Valoración del tutor (24 de noviembre): el prototipo tiene que transmitir ya, en pequeño, lo que quiere transmitir el juego final. La idea del juego es **la tranquilidad después de la tormenta**: las averías y la presión de la línea son la tormenta; la calma es la línea otra vez en verde y las parejas sumando. El prototipo ya tenía ese ciclo (atasco, luz roja, palanca, verde), pero con la escena tan oscura no se notaba.
+- Bandeja derecha: un cubo cogido sigue chocando con los demás, así que el producto nuevo, que aparecía 0,5 s después de coger el anterior, salía con la mano todavía encima y se caía. *Refill Delay* de los dos dispensadores a 1,5 s. Probado por Link: los productos se quedan en la bandeja.
+- Iluminación (TAKT-41): sin iluminación global ni exposición automática ([ADR 0015](../decisiones/0015-rendimiento-por-link.md)), todo lo que no recibía la luz directa del sol se veía negro. Se pone una luz de cielo (*Sky Light*) móvil en `L_XRTemplate_Lighting`, y la «Luz de estado» pasa a tener más intensidad y un radio de 350 cm, de modo que tiñe toda la zona de trabajo: roja durante la avería y verde al volver a la marcha.
+- Marcador con letras de 14 cm (antes 8); con la escena iluminada ya se lee con las gafas.
+- Averías cada 15-30 s (antes 20-45 s), para que en una demostración corta salgan varias.
+- Limpieza del nivel: fuera las pistolas, los cubos sueltos y la mesa de la plantilla, que ya no se usaban.
+- Prueba por Link: la escena se ve bien y fluida. En el log, 5 parejas y 5 sueltos, y tres averías reparadas con la palanca (una forzada con `ke * TriggerFault`).
