@@ -81,6 +81,17 @@ if ($p -notlike "*$sdk\platform-tools*") {
 
   El resultado queda en `TAKT/Saved/Logs/build.txt` (fuera del repositorio). Al abrir el `.uproject`, el editor no recompila solo si el módulo ya existe, aunque el código haya cambiado.
 
+## Empaquetar una build de Windows
+
+Con el editor cerrado (el cocinado necesita la memoria), desde `cmd`:
+
+```bat
+"E:\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="E:\PROJ\TAKT\TAKT.uproject" -noP4 -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory="E:\TAKT_Builds" -utf8output > E:\PROJ\TAKT\Saved\Logs\package.txt 2>&1
+```
+
+- La build queda en `E:\TAKT_Builds\Windows\`, fuera del repositorio, y el registro en `TAKT/Saved/Logs/package.txt`.
+- Arranca en el mapa por defecto del juego (`L_Dev_Cinta`, en *Configuración del proyecto → Mapas y modos*).
+
 ## Meta Quest 2
 
 - Cuenta de desarrollador de Meta con una organización, y el modo desarrollador activado desde la app Meta Horizon del móvil.

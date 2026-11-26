@@ -2,7 +2,28 @@
 
 Videojuego de realidad virtual de oleadas ambientado en una línea de manipulados: el jugador tiene que mantener la máquina en marcha reparando averías con las manos, cada vez más rápido.
 
+**La idea:** la tranquilidad después de la tormenta. Las averías y la presión de la línea son la tormenta; el juego consiste en conseguir que todo vuelva a ir fino.
+
 Proyecto final (PROJ) de 2º de DAM — Álvaro, curso 2026-2027.
+
+## Prototipo (26 de noviembre de 2026)
+
+Release [`prototipo`](https://github.com/alvsheeesh/PROJ/releases/tag/prototipo). Un turno corto en la línea, por Quest Link:
+
+- **Coger y soltar** con el botón de agarre (*grip*) de cada mando. El jugador está fijo delante de la cinta.
+- **Producir:** coge cubos de las dos bandejas, que se reponen solas, y déjalos en la cinta. Si dos llegan juntos a la caja del final cuentan como **pareja** (10 puntos); uno solo cuenta como **suelto**. El marcador está encima de la cinta.
+- **La tormenta:** cada 15-30 s la línea se atasca: la cinta se para y la zona de trabajo se pone roja. Acciona la **palanca** con el *grip* para repararla: vuelve el verde y la cinta arranca.
+
+Alcance: [ADR 0006](docs/decisiones/0006-alcance-del-prototipo.md), ampliada con el bucle de juego de la [ADR 0018](docs/decisiones/0018-bucle-de-juego.md). La partida contrarreloj con récord (TAKT-40) queda para después.
+
+### Cómo ejecutarlo
+
+Requisitos: PC con Windows y una gráfica para VR (probado con una RTX 4060 Laptop), Meta Quest 2 con cable para Quest Link y la aplicación Meta Quest Link, con *Orígenes desconocidos* activado y Meta como runtime de OpenXR activo.
+
+- **Build de Windows:** conecta las gafas, activa Quest Link y ejecuta `TAKT.exe`. La build no se guarda en el repositorio; se genera con el comando de empaquetado de [`docs/entorno.md`](docs/entorno.md).
+- **Desde el editor:** con las gafas ya en Quest Link, abre `TAKT/TAKT.uproject` (se abre `L_Dev_Cinta`) y usa *Play → VR Preview*.
+
+Sin gafas no se puede jugar: la cámara se queda a ras de suelo. En el editor, durante el *Play*, `ke * TriggerFault` en la consola provoca una avería.
 
 ## Stack
 
@@ -65,7 +86,7 @@ Impacto en cinco niveles: **Sugerencia**, **Menor**, **Medio**, **Mayor** y **Cr
 
 ## Planificación y avances
 
-- **Prototipo:** entrega el 19 de noviembre de 2026 ([alcance](docs/decisiones/0006-alcance-del-prototipo.md) · [calendario](docs/planificacion.md)).
+- **Prototipo:** entrega el 26 de noviembre de 2026, aplazada desde el 19 ([alcance](docs/decisiones/0006-alcance-del-prototipo.md) · [bucle de juego](docs/decisiones/0018-bucle-de-juego.md) · [calendario](docs/planificacion.md)).
 - **Bitácora:** [`docs/sprints/`](docs/sprints/).
 - **Ritmo:** miércoles por la mañana fijo y una segunda sesión elegida cada semana, con un mínimo de 6 horas a la semana y push al final de cada sesión ([ADR 0013](docs/decisiones/0013-ritmo-miercoles-y-sesion-elegida.md)).
 
