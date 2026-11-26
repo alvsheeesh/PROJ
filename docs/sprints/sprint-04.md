@@ -1,7 +1,7 @@
 # Sprint 04 — Estabilización
 
-- **Fechas:** 2026-11-12 → 2026-11-18
-- **Objetivo:** el prototipo funciona por Quest Link desde una build de Windows, fuera del editor, sin funcionalidades nuevas, con el rendimiento medido en la build, la documentación al día y la release `prototipo`.
+- **Fechas:** 2026-11-12 → 2026-11-25 (alargado el 19, al aplazarse la entrega al 26)
+- **Objetivo:** el prototipo funciona por Quest Link desde una build de Windows, fuera del editor, sin funcionalidades nuevas, con el rendimiento medido en la build, la documentación al día y la release `prototipo`. Desde el 12 de noviembre incluye también el bucle de juego ([ADR 0018](../decisiones/0018-bucle-de-juego.md)).
 - **Release:** prototipo
 
 ## Planificación
@@ -67,3 +67,18 @@ Riesgos:
 - Averías cada 15-30 s (antes 20-45 s), para que en una demostración corta salgan varias.
 - Limpieza del nivel: fuera las pistolas, los cubos sueltos y la mesa de la plantilla, que ya no se usaban.
 - Prueba por Link: la escena se ve bien y fluida. En el log, 5 parejas y 5 sueltos, y tres averías reparadas con la palanca (una forzada con `ke * TriggerFault`).
+
+### Control de la semana 5 (12–18 nov)
+- **Objetivo:** primera build de Windows ✅ (TAKT-36). Build de entrega, prueba por Link y release `prototipo` ❌: no se hicieron las sesiones del domingo 15, el lunes 16 ni el miércoles 18. El tutor pide además un bucle de juego ([ADR 0018](../decisiones/0018-bucle-de-juego.md)).
+- **Horas:** 1,7 h (el jueves 12). **Por debajo del mínimo de 6 h.**
+- **Plan:** la entrega se aplaza al jueves 26 y el sprint se alarga hasta el 25.
+
+### Control de la semana 6 (19–25 nov)
+- **Objetivo:** bucle de juego montado en el nivel y probado por Link ✅ (TAKT-37, TAKT-38 y TAKT-39, PR #20). Iluminación ✅. Build de entrega ✅. Partida contrarreloj con récord ❌: se recorta (TAKT-40).
+- **Sesiones:** jueves 19 (en clase, sin gafas), domingo 22 y miércoles 25 (con gafas, en dos tramos). La del lunes 23 no se hizo.
+- **Horas:** 5,1 h: 0,5 h el 19, 1,1 h el 22 y 3,5 h el 25. **Por debajo del mínimo de 6 h**, aunque es la semana con más horas desde la segunda.
+
+### 2026-11-26 (jueves)
+- Build de entrega del 25 de noviembre: `BUILD SUCCESSFUL` en 2 min 47 s (la primera tardó 36 min), con los mismos dos avisos de extensiones de OpenXR que no se usan. En `E:\TAKT_Builds\Windows\TAKT.exe`.
+- Prueba de la build por Link: el jugador aparece delante de la cinta, la escena se ve iluminada, el marcador se lee y el bucle funciona (en una partida, 90 puntos y 15 sueltos). Con `stat unit`: 15,5 ms por fotograma (unos 65 fps), GPU 10,5 ms e hilo de juego 15,3 ms. Se ve fluido, pero queda por debajo de los 72 fps del objetivo: el límite es el hilo de juego, como ya se vio en el editor ([ADR 0015](../decisiones/0015-rendimiento-por-link.md)). Se revisa después de la entrega.
+- Entrega al tutor: la carpeta completa de la build en un ZIP, adjunta a la release `prototipo`.
